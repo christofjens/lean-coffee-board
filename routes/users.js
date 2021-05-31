@@ -1,8 +1,9 @@
 const express = require('express')
 const uuidv4 = require('uuid').v4
 const router = express.Router()
+const User = require('../models/User')
 
-let users = [
+let userList = [
   {
     name: 'Jane Doe',
     age: 33,
@@ -17,7 +18,8 @@ let users = [
   },
 ]
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  const users = await User.find()
   res.json(users)
 })
 
